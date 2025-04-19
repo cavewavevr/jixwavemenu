@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mod Menu Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+    .container {
+      background: #222;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    input, button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>jixwave Mod Menu</h2>
+    <p>Premium mod menu for Gorilla Tag.</p>
+    <input type="email" id="email" placeholder="Enter your email" required />
+    <button onclick="sendToDiscord()">Buy Now</button>
+  </div>
+
+  <script>
+    function sendToDiscord() {
+      const webhookURL = "https://discord.com/api/webhooks/1362497790587961444/12oLn_isECK3MB3w4H5nv7qUpFr0Xqs3YtBMmQY8LTXVDoIzSCQdvuK-2r0ReErLd46h"; // replace with your actual webhook URL
+      const email = document.getElementById("email").value;
+      const code = "MOD-" + Math.random().toString(36).substring(2, 8).toUpperCase(); // random code
+
+      const data = {
+        content: `🎉 New Purchase!\nEmail: ${email}\nAccess Code: ${code}`
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("Thank you! Your code has been sent.");
+        } else {
+          alert("Failed to send. Try again.");
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
